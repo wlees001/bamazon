@@ -15,15 +15,15 @@ function menuOptions() {
         type: 'list',
         name: 'option',
         message: 'Select an option: ',
-        choices: ['Product List', 'Inventory', 'Add Inventory', 'Add New Product'],
+        choices: ['Product List', /*'Low Inventory'*/ 'Add Inventory', 'Add New Product'],
         filter: function (val) {
             if (val === 'Product List') {
                 return 'sale';
-            } else if (val === 'Inventory') {
-            return 'inventory low';
+            // } else if (val === 'Low Inventory') {
+            // return 'inventory low';
             } else if (val === 'Add Inventory') {
                 return 'addInventory';
-            } else if (val === 'New Product') {
+            } else if (val === 'Add New Product') {
                 return 'newProduct';
             } else {
                 console.log('Not happening bro');
@@ -34,8 +34,8 @@ function menuOptions() {
 ]).then(function(input) {
        if (input.option === 'sale') {
            showSale();
-       } else if (input.option === 'Inventory') {
-           showLowInventory();
+    //    } else if (input.option === 'Low Inventory') {
+    //        showLowInventory();
        } else if (input.option === 'addInventory') {
            addInventory();
        } else if (input.option === 'newProduct') {
@@ -72,10 +72,10 @@ function showSale() {
        };
 
 function validateInteger(value) {
-    var integer = Number.isInteger(parseFloat(value));
+    var integer = parseFloat(value);
     var expression = Math.sign(value);
 
-    if (interger === 1 && expression === 1) {
+    if (typeof integer === "number" && expression === 1) {
         return true;
     } else {
         return 'Enter a non-zero number'
